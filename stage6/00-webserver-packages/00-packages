@@ -1,0 +1,17 @@
+nginx-full
+ufw
+fail2ban
+php
+php-fpm
+php-cgi
+php-curl
+php-json
+php-mysql
+php-zip
+certbot
+python3-certbot-nginx
+mariadb-server
+mariadb-client
+postgresql
+vsftpd
+samba

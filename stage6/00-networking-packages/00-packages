@@ -1,0 +1,17 @@
+git 
+curl
+wget
+net-tools
+iproute2
+iputils-ping
+speedtest-cli
+traceroute
+whois
+nmap
+openssh-server 
+mosquitto 
+mosquitto-clients
+etherape
+chromium
+dnsmasq
+bind9

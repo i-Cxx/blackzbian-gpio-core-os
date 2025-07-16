@@ -1,0 +1,110 @@
+IMG_NAME=RaspberryPi5_DE_Image
+
+
+# Basic Configuration
+# -------------------
+# Set the target architecture. For Raspberry Pi 5, use arm64.
+# (Note: For older Pi models, you might use armhf or arm64 depending on the desired OS)
+ARCHITECTURE=arm64
+
+# Set the release name of the Debian/Raspbian base.
+# 'bookworm' is the current stable for Raspberry Pi OS.
+RELEASE=bookworm
+
+# Image Customization
+# -------------------
+# Set the hostname for your Raspberry Pi.
+HOSTNAME=blackzberry
+
+# Set the default username and password for the image.
+# IMPORTANT: Change these to secure credentials after image creation!
+USERNAME=blacky
+PASSWORD=blackzberry
+
+#FIRST_USER_NAME=blacky
+#FIRST_USER_PASS=blackzberry
+
+# Localization Settings (German)
+# -----------------------------
+# Set the locale to German.
+LOCALE_DEFAULT=de_DE.UTF-8
+
+# Set the timezone to Europe/Berlin.
+TIMEZONE_DEFAULT=Europe/Berlin
+
+# Keyboard layout. 'de' for German keyboard layout.
+KEYBOARD_KEYMAP=de
+
+KEYBOARD_LAYOUT='Deutsch (DE)'
+
+# Wi-Fi Country Code (Important for regulatory compliance and proper Wi-Fi function)
+# 'DE' for Germany.
+WPA_COUNTRY=DE
+
+# SSH Configuration
+# -----------------
+# To enable SSH by default, uncomment the following line.
+SSH_ENABLE=1
+
+# Disable predictable network interface names (e.g., eth0 instead of enxb1ad...)
+# This can be useful for compatibility with older scripts or expectations.
+# ENABLE_SSH_PASSWORD_AUTH=0 # Optional: Set to 1 to allow password authentication for SSH
+
+# Filesystem Settings
+# -------------------
+# Size of the root filesystem in MB. Adjust as needed.
+# If not set, pi-gen will use a default that might be too small for some uses.
+# If set to 0, the root filesystem will be resized to fill the SD card on first boot.
+# If set to a specific size, it will be that size.
+TARGET_ROOTFS_SIZE=0
+
+# Clean-up during image creation.
+# Setting this to 1 will remove temporary files after each stage.
+# This saves space but can make debugging harder if a stage fails.
+# CLEAN=1
+
+# Build Options
+# -------------
+# Which stages to build.
+# Uncomment the stages you want to include.
+# The default stages (0, 1, 2) are usually sufficient for a basic image.
+# For a full desktop environment, you would include 'stage3', 'stage4', 'stage5'.
+# STAGES="stage0 stage1 stage2 stage3 stage4 stage5"
+STAGES="stage0 stage1 stage2 stage6" # Basic system with ssh enabled (if SSH_ENABLE=1)
+
+# Uncomment the following to export the image in a specific format.
+# img (default), zip, xz
+# IMG_SUFFIX=img
+
+# You can specify the output directory for your images.
+# IMG_NAME=RaspberryPi5_DE_Image
+# If not set, it defaults to 'pi-gen-YYYY-MM-DD'
+
+# You can add a custom image name prefix
+# IMAGE_NAME_PREFIX=my_custom_rpi5
+
+# Uncomment this to set a custom apt proxy.
+# APT_PROXY=http://your.proxy.server:3142
+
+# Uncomment this to disable the first boot setup wizard.
+# DISABLE_FIRSTBOOT_WIZARD=1
+
+# Uncomment this to disable the "Welcome to Raspberry Pi" intro.
+# DISABLE_PIXEL_WELCOME_SCREEN=1
+
+# To include custom files or scripts, you would typically add them to new stages
+# or within existing stages' '00-install-packages' or '01-run-chroot' scripts.
+# For example, to add custom configurations, you might create a new stage like:
+# STAGES="stage0 stage1 stage2 stage3"
+# And in stage3, you could have a file '00-install-packages' that installs extra software
+# or a '01-run-chroot' script that modifies configuration files.
+
+# Example for a custom stage (not directly in config, but as a concept):
+# Suppose you have a directory 'stage3' in your pi-gen clone.
+# Inside 'stage3', you could have:
+#   - 00-install-packages:
+#     apt-get update
+#     apt-get install -y htop neofetch
+#   - 01-run-chroot:
+#     echo "Some custom configuration here" >> /etc/mycustomconfig.conf
+# SKIP_STAGE2_APT_RECOMMENDS=1  <-- DIESE ZEILE MUSS AUSKOMMENTIERT ODER ENTFERNT SEIN
